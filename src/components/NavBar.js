@@ -8,7 +8,7 @@ const NavBar = () =>{
             <nav className="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
                 <div className="container-fluid">
                     <div className="navTitulo">
-                    <h1><span>B</span>log<span>B</span>urger</h1>
+                        <h1><span>B</span>log<span>B</span>urger</h1>
                     </div>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
                     <span className="navbar-toggler-icon"></span>
