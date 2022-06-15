@@ -32,6 +32,7 @@ h2{
     display:flex;
     flex-direction:row;
     justify-content: center;
+    align-self: center;
     background-color: bisque;
     width:150px;
     border-radius: 10%;
@@ -62,4 +63,30 @@ h2{
 .btnCarrito{
     margin-top:20px;
     margin-bottom:20px;
+}
+.card img{
+    width: 300px;
+    height: 300px;
+    align-self: center;
+}
+.card{
+    background-color: rgb(254, 248, 245);
+    width: 400px;
+    max-height: 430px;
+    margin-bottom: 1rem;
+}
+.card h3{
+    width: 300px;
+    align-self: center;
+}
+.card p{
+    align-self: center;
+}
+
+.contenedorProductos{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* align-items: center; */
+    /* justify-content: center; */
 }

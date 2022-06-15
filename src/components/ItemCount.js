@@ -25,11 +25,11 @@ const ItemCount = ({stock,initial,onAdd}) =>{
     }
 
     return(
-        <section className="cardContador">
+        <div className="cardContador">
             <button className="btn btn-danger btnResta" onClick={disminuir}>-</button>
             <p className="mostrarNumero">{contador}</p>
             <button className="btn btn-primary btnSuma" onClick={aumentar}>+</button>
-        </section>
+        </div>
     )
 }
 
