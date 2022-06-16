@@ -90,3 +90,23 @@ h2{
     /* align-items: center; */
     /* justify-content: center; */
 }
+.contenedorItem{
+    display: flex;
+}
+.contenedorItem img{
+    width: 300px;
+    height: 300px;
+    margin-left:2rem;
+}
+.contenedorDetalle{
+    display: flex;
+    flex-direction: column;
+    margin-left: 4rem;
+    
+}
+.contenedorDetalle h3{
+    align-self: center;
+}
+.contenedorDetalle p{
+    width: 500px;
+}

@@ -1,20 +1,22 @@
 import React from "react";
 import { useEffect,useState } from "react";
-import customFecth from "../utils/customFetch";
-import productosList from "../utils/productosList";
 import ItemList from "./ItemList";
+import { traerProductos } from "../utils/products";
 
 
 const ItemListContainer = (props) =>{
 
-    const [items,setItems] = useState([]);
+    const [products,setProducts] = useState([]);
 
     useEffect(() =>{
-        customFecth(2000,productosList)
-        .then(resolve => setItems(resolve));
-    },[items])
-
-    console.log(items);
+        traerProductos()
+            .then((res) => {
+                setProducts(res);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    },[])
 
     return(
         <>
@@ -22,7 +24,7 @@ const ItemListContainer = (props) =>{
                 <p className="textoItemList">{props.greeting}</p>
             </div>
             <div className="contenedorProductos">
-                <ItemList productosList={items} />
+                <ItemList items={products} />
             </div>
         </>
     )
