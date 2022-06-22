@@ -1,30 +1,36 @@
 import React from "react";
 import { useEffect,useState } from "react";
+import {useParams} from "react-router-dom";
+import {customFecth, ProductoById, ProductoFiltrar} from "../utils/customFetch";
 import ItemList from "./ItemList";
-import { traerProductos } from "../utils/products";
 
 
-const ItemListContainer = (props) =>{
 
-    const [products,setProducts] = useState([]);
+const ItemListContainer = () =>{
 
-    useEffect(() =>{
-        traerProductos()
-            .then((res) => {
-                setProducts(res);
+    const [items, setItems] = useState([]);
+
+    const {categoryId} = useParams();
+
+    useEffect(() => {
+        if(!categoryId){
+            customFecth().then(response =>{
+                setItems(response);
             })
-            .catch((error) => {
-                console.log(error);
+        }else{
+            ProductoFiltrar(categoryId).then(response =>{
+                setItems(response)
             })
-    },[])
+        }
+    },[categoryId])
 
     return(
         <>
-            <div className="contenedorItemList">
-                <p className="textoItemList">{props.greeting}</p>
+            <div className="contenedorTItuloProduct">
+                <h2>Productos</h2>
             </div>
             <div className="contenedorProductos">
-                <ItemList items={products} />
+                <ItemList products={items} />
             </div>
         </>
     )

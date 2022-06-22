@@ -1,8 +1,9 @@
 import React from "react";
 import CartWidget from "./CartWidjet";
+import {Link} from "react-router-dom";
 
 
-const NavBar = () =>{
+const NavBar = (inHeader) =>{
     return(
         <header>
             <nav className="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
@@ -15,18 +16,10 @@ const NavBar = () =>{
                     </button>
                     <div className="collapse navbar-collapse" id="collapsibleNavbar">
                         <ul className="navbar-nav ">
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">Inicio</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">Nustros Productos</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">Carrito</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">Contactanos</a>
-                            </li>
+                            <li className="nav-item"><Link to='/' >Home</Link></li>
+                            <li className="nav-item"><Link to='/category/uno'>Categoria 1</Link></li>
+                            <li className="nav-item"><Link to='/category/dos'>Categoria 2</Link></li>
+                            <li className="nav-item"><Link to='/category/tres'>Categoria 3</Link></li>
                             
                         </ul>
                     </div>
