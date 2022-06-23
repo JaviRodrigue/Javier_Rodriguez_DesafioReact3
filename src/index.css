@@ -133,3 +133,12 @@ h2{
 .contenedorDetalle p{
     width: 500px;
 }
+.carrito{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    margin-top:5rem;
+    color:black;
+}
+

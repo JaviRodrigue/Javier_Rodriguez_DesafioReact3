@@ -19,7 +19,7 @@ const ItemDetailContainer = () => {
 
     return(
         <div>
-            <ItemDetail {...product}/>
+            {product?.length <= 0 ? <p className="loader">Cargando...</p> : <ItemDetail {...product}/>}
         </div>
     )
 }
