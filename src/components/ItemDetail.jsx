@@ -2,13 +2,19 @@ import React from "react";
 import { useState } from "react";
 import ItemCount from "./ItemCount";
 import {Link} from "react-router-dom";
+import { Contexto } from "../CartContext/CartContext";
+import { useContext } from "react";
 
 const ItemDetail = ({nombre, id , descripcion , stock, precio, imagen}) => {
-    const [eliminar, setEliminar] = useState(0);
+    const [eliminar, setEliminar] = useState(false);
 
-    const onAdd = (contador) => {
-        setEliminar(contador);
+    const {agregarItem} = useContext(Contexto);
+
+    const onAdd = (quantity) => {
+        agregarItem(id,nombre,precio,quantity,imagen);
+        setEliminar(true);
     }
+
 
     return(
         <div className="contenedorItem">
@@ -19,7 +25,7 @@ const ItemDetail = ({nombre, id , descripcion , stock, precio, imagen}) => {
                 <span>Precio:${precio}</span>
                 <span>Stock:{stock}</span>
                 <div className="confirmarContainer">
-                    {eliminar ? <Link to={"/cart"} className="confirmar"><button clasName="btn">Confirmar Compra</button></Link> : <ItemCount stock={stock} initial={1} onAdd={onAdd} />}
+                    {eliminar ? <Link to={"/cart"}>Confirmar Compra</Link> : <ItemCount stock={stock} initial={1} onAdd={onAdd} />}
                 </div>
             </div>
         </div>

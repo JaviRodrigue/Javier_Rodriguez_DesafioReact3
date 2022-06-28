@@ -20,7 +20,7 @@ const NavBar = (inHeader) =>{
                             <li className="nav-item"><Link to='/category/uno'>Categoria 1</Link></li>
                             <li className="nav-item"><Link to='/category/dos'>Categoria 2</Link></li>
                             <li className="nav-item"><Link to='/category/tres'>Categoria 3</Link></li>
-                            
+                            <li className="nav-item"><Link to="/cart">carrito</Link></li>
                         </ul>
                     </div>
                 </div>

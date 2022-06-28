@@ -142,3 +142,41 @@ h2{
     color:black;
 }
 
+.tituloVacio{
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top:4,5rem;
+}
+.contenedorUnico{
+    /* background-color: aqua; */
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.containerImgCart img{
+    width: 350px;
+    height: 400px;
+}
+.conainerGeneral{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.carritoItems{
+    display: flex;
+    flex-wrap: wrap;
+}
+.vaciarCarrito{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top:25px;
+}
