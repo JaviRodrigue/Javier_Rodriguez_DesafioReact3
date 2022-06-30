@@ -180,3 +180,22 @@ h2{
     align-items: center;
     margin-top:25px;
 }
+.ContenedorVacio{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.contadorCantidad{
+    color:white;
+}
+.contendorMenuContable{
+    display: flex;
+    margin-right: 3rem;
+}
+.containerTotalPrecio{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

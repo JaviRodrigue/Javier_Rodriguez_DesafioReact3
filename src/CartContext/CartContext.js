@@ -13,7 +13,7 @@ const CartProvider = ({children}) =>{
         if(verificar(id)){
             let index = cartItem.findIndex((index) => (index.id === id));
             let copiaCart = [...cartItem];
-            copiaCart[index].quantity =+ quantity;
+            copiaCart[index].quantity += quantity;
             setCartItem(copiaCart);
         }else{
             const itemagregado = {id,nombre,precio,quantity,imagen};
@@ -41,9 +41,28 @@ const CartProvider = ({children}) =>{
     const cartTotalProducts = () =>{
         let cant = 0;
         cartItem.forEach((item) =>{
-            cant = cant + item.cantidad;
+            cant = cant + item.quantity;
         })
+        console.log(cant)
         return cant
+    }
+
+    // obtener el subtotal de precio
+    const contadorSubtotal = (precio, quantity) =>{
+        let subtotal = 0;
+        subtotal = subtotal + (precio * quantity);
+
+        return Number(subtotal)
+    }
+
+    // obtener el precio Total
+    const obtenerTotal = () =>{
+        let total = 0;
+        cartItem.forEach((p) =>{
+            total = total + (p.precio * p.quantity);
+        })
+
+        return Number(total)
     }
 
     return(
@@ -52,7 +71,9 @@ const CartProvider = ({children}) =>{
             agregarItem,
             eliminarItem,
             limpiarCarrito,
-            cartTotalProducts
+            cartTotalProducts,
+            contadorSubtotal,
+            obtenerTotal
         }}>
             {children}
         </Contexto.Provider>

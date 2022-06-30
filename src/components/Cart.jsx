@@ -1,16 +1,20 @@
 import React from "react";
 import { useContext } from "react";
 import { Contexto } from "../CartContext/CartContext";
+import { Link } from "react-router-dom";
 
 
 const Cart = () =>{
-    const {cartItem,eliminarItem,limpiarCarrito,cartTotalProducts} = useContext(Contexto);
+    const {cartItem,eliminarItem,limpiarCarrito,cartTotalProducts,contadorSubtotal,obtenerTotal} = useContext(Contexto);
 
     // si mi carrito esta vacio, muestro un mensaje
     if(cartTotalProducts() == 0){
         console.log("carrito vacio")
         return(
-            <h3 className="tituloVacio">Carrito Vacio</h3>
+            <div className="ContenedorVacio">
+                <h3 className="tituloVacio">Carrito Vacio</h3>
+                <button><Link to={"/"}>Volver a Comprar</Link></button>
+            </div>
         )
     }else{
         return(
@@ -26,14 +30,17 @@ const Cart = () =>{
                                     <img src={item.imagen} alt={item.id} />
                                 </div>
                                 <div className="conainerGeneral">
-                                    <div class="containerNombreCart">
+                                    <div className="containerNombreCart">
                                         <p>{item.nombre}</p>
                                     </div>
                                     <div className="containerPrecioCart">
-                                        <p>{item.precio}</p>
+                                        <p>Precio:${item.precio}</p>
                                     </div>
                                     <div className="containerCatidadCart">
-                                        <p>{item.quantity}</p>
+                                        <p>Cantidad Pedida: {item.quantity}</p>
+                                    </div>
+                                    <div className="containerPorductTotal">
+                                        <p>${contadorSubtotal(item.precio, item.quantity)}</p>
                                     </div>
                                     <div className="containerButtonCart">
                                         <button className="btn btn-danger" onClick={()=> eliminarItem(item.id)}>-</button>
@@ -42,6 +49,9 @@ const Cart = () =>{
                             </div>
                         ))}
                     </div>
+                </div>
+                <div className="containerTotalPrecio">
+                    <h3>Total a Pagar: ${obtenerTotal()}</h3>
                 </div>
                 <div className="vaciarCarrito">
                     <button className="btn btn-danger" onClick={limpiarCarrito}>Vaciar Carrito</button>
