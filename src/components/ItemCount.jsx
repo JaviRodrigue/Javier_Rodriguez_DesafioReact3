@@ -34,7 +34,7 @@ const ItemCount = ({stock,initial,onAdd}) =>{
         }else{
             swal({
                 title:"Success",
-                text:"Su compra se realizo con exito",
+                text:"Agregaste correctamenete el producto",
                 icon:"success"
             });
             onAdd(contador);

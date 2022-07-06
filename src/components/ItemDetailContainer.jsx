@@ -2,7 +2,9 @@ import React from "react";
 import { useState,useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
-import {ProductoById} from "../utils/customFetch"
+// import {ProductoById} from "../utils/customFetch"
+import { collectionProd } from '../utils/firebase';
+import { doc, getDoc } from 'firebase/firestore';
 
 
 const ItemDetailContainer = () => {
@@ -11,11 +13,21 @@ const ItemDetailContainer = () => {
     const {id} = useParams()
 
     useEffect(() =>{
-        ProductoById(parseInt(id))
-        .then(response => {
-            setProduct(response)
-        })
-    },[])
+
+        const ref = doc(collectionProd, id);
+        getDoc(ref)
+            .then((response) => {
+                setProduct({
+                    id : response.id,
+                    ...response.data()
+                })
+            })
+
+        // ProductoById(parseInt(id))
+        // .then(response => {
+        //     setProduct(response)
+        // })
+    },[id])
 
     return(
         <div>

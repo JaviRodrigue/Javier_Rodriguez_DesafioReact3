@@ -1,5 +1,7 @@
 import { createContext} from "react";
 import { useState } from "react";
+import { collectionProd } from "../utils/firebase";
+
 
 // Creo el contexto
 const Contexto = createContext();
@@ -7,6 +9,7 @@ const Contexto = createContext();
 // Creo el provider
 const CartProvider = ({children}) =>{
     const [cartItem, setCartItem] = useState([]);
+
 
     // funcion para agregar un producto al carrito
     const agregarItem = (id,nombre,precio,quantity,imagen) =>{

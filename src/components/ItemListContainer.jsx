@@ -3,7 +3,8 @@ import { useEffect,useState } from "react";
 import {useParams} from "react-router-dom";
 import {customFecth, ProductoById, ProductoFiltrar} from "../utils/customFetch";
 import ItemList from "./ItemList";
-
+import { collectionProd } from "../utils/firebase";
+import { getDocs, query, where } from "firebase/firestore";
 
 
 const ItemListContainer = () =>{
@@ -13,15 +14,30 @@ const ItemListContainer = () =>{
     const {categoryId} = useParams();
 
     useEffect(() => {
-        if(!categoryId){
-            customFecth().then(response =>{
-                setItems(response);
+
+        const consulta = getDocs(collectionProd);
+
+        consulta
+        .then((resultado) => {
+            const productosMapeados = resultado.docs.map(referencia => {
+                const aux = referencia.data();
+                aux.id = referencia.id;
+                return aux;
             })
-        }else{
-            ProductoFiltrar(categoryId).then(response =>{
-                setItems(response)
-            })
-        }
+            setItems(productosMapeados);
+        })
+        .catch((error) =>{
+            console.log(error);
+        })
+        // if(!categoryId){
+        //     customFecth().then(response =>{
+        //         setItems(response);
+        //     })
+        // }else{
+        //     ProductoFiltrar(categoryId).then(response =>{
+        //         setItems(response)
+        //     })
+        // }
     },[categoryId])
 
     return(
