@@ -15,6 +15,7 @@ const ItemListContainer = () =>{
 
     useEffect(() => {
 
+
         const consulta = getDocs(collectionProd);
 
         consulta

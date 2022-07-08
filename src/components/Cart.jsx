@@ -2,10 +2,51 @@ import React from "react";
 import { useContext } from "react";
 import { Contexto } from "../CartContext/CartContext";
 import { Link } from "react-router-dom";
-
+import { db } from "../utils/firebase";
+import { useState } from "react";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import Form from "./Form";
 
 const Cart = () =>{
     const {cartItem,eliminarItem,limpiarCarrito,cartTotalProducts,contadorSubtotal,obtenerTotal} = useContext(Contexto);
+    const [data, setData] = useState({nombre:"",email:"",tel:""})
+    const [orderId, setOrderId] = useState("");
+
+    const handleChange = (e) =>{
+        const {nombre, value} = e.target;
+        setData({
+            ...data,
+            [e.target.nombre]:e.target.value,
+        })
+    };
+
+    const handleSubmit = (e) =>{
+        e.preventDefault()
+        const orden = {
+            buyer: {
+                nombre: data.nombre,
+                email: data.email,
+                tel: data.tel,
+            },
+            cartItem,
+            total: obtenerTotal(),
+            date:serverTimestamp(),
+        };
+        console.log(orden);
+        const ref = collection (db, "orden");
+        addDoc(ref, orden).then((res) =>{
+            setOrderId(res.id)
+            limpiarCarrito();
+        })
+    };
+
+    if(orderId !== ""){
+        console.log({orderId});
+        return <h2 className="tituloFinalizarCompra">Numero de compra de envio es:{orderId}</h2>
+    }
+
+
+
 
     // si mi carrito esta vacio, muestro un mensaje
     if(cartTotalProducts() == 0){
@@ -56,6 +97,11 @@ const Cart = () =>{
                 <div className="vaciarCarrito">
                     <button className="btn btn-danger" onClick={limpiarCarrito}>Vaciar Carrito</button>
                 </div>
+                <Form
+                    handleChange={handleChange}
+                    data={data}
+                    handleSubmit={handleSubmit}
+                />
             </>
         )
     }
